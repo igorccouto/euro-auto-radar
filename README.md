@@ -1,5 +1,8 @@
 # Euro Auto Radar
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) 
+[![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://www.python.org/downloads/release/python-370/) ![GitHub last commit](https://img.shields.io/github/last-commit/igorccouto/euro-auto-radar)
+
 A Python project to help car buyers in Portugal (and later other countries) find the best car for their needs. It automates data gathering and filtering from multiple car listing websites.
 
 ## Features
