@@ -14,8 +14,12 @@ class StandVirtualBrowser(BaseBrowser):
             self.select_make(car_filter.make)
             if car_filter.model:
                 self.select_model(car_filter.model)
+        if car_filter.year_from:
+            self.select_year_of_registration_from(car_filter.year_from)
+        if car_filter.year_to:
+            self.select_year_of_registration_to(car_filter.year_to)
 
-        pass
+        self._get_and_move_to_element((By.XPATH, '//*[@data-testid="q"]')).click()
 
     def accept_cookies(self):
         accept_button = self._get_and_move_to_element((By.ID, 'onetrust-accept-btn-handler'))
@@ -42,4 +46,19 @@ class StandVirtualBrowser(BaseBrowser):
                 break
         model_arrow_el = model_filter_el.find_element(By.XPATH, './/*[@data-testid="arrow"]')
         model_arrow_el.click()
-        pass
+    
+    def select_year_of_registration_from(self, year):
+        year_filter_locator = (By.XPATH, '//*[@data-testid="filter_float_first_registration_year"]')
+        year_filter_el = self._get_and_move_to_element(year_filter_locator)
+        range_from_locator = (By.XPATH, './/input[@placeholder="Ano de"]')
+        year_from_el = year_filter_el.find_element(*range_from_locator)
+        year_from_el.click()
+        year_from_el.send_keys(year)
+    
+    def select_year_of_registration_to(self, year):
+        year_filter_locator = (By.XPATH, '//*[@data-testid="filter_float_first_registration_year"]')
+        year_filter_el = self._get_and_move_to_element(year_filter_locator)
+        range_to_locator = (By.XPATH, './/input[@placeholder="Ano até"]')
+        year_to_el = year_filter_el.find_element(*range_to_locator)
+        year_to_el.click()
+        year_to_el.send_keys(year)
