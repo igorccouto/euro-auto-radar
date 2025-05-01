@@ -24,7 +24,16 @@ class BaseBrowser:
             options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
+        prefs = {
+            "profile.default_content_setting_values.geolocation": 2,  # Block location
+            "profile.default_content_setting_values.notifications": 2,  # Block notifications
+            "profile.default_content_setting_values.media_stream_mic": 2,  # Block microphone
+            "profile.default_content_setting_values.media_stream_camera": 2,  # Block camera
+            "profile.default_content_setting_values.automatic_downloads": 2,  # Block automatic downloads
+        }
+        options.add_experimental_option("prefs", prefs)
         return webdriver.Chrome(options=options)
+
     def _element_in_viewport(self, locator):
         element = self.driver.find_element(*locator)
         return self.driver.execute_script("""
