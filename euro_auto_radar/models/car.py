@@ -3,15 +3,18 @@ from typing import Optional
 
 @dataclass(order=True)
 class Car:
+    id: str
     make: str
     model: str
+    edition: str
     mileage: int
-    first_registration_year: int
     price: float
     source: str
     url: str
-    fuel_type: str
-    transmission: str
+    first_registration_year: str
+    first_registration_month: Optional[str] = None
+    fuel_type: Optional[str] = None
+    transmission: Optional[str] = None
     horsepower: Optional[int] = None
     location: Optional[str] = None
     vat_deductible: Optional[bool] = None
